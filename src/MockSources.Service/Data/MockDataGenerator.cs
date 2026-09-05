@@ -94,7 +94,7 @@ public static class MockDataGenerator
     {
         if (min == max) return min;
         var range = (double)(max - min);
-        return min + (decimal)(Rng.NextDouble() * range);
+        return Math.Round(min + (decimal)(Rng.NextDouble() * range), 2);
     }
 
     private static DateTime RandomRecentDate()
