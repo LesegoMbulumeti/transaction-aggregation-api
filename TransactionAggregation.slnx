@@ -3,4 +3,7 @@
     <Project Path="src/Aggregation.Api/Aggregation.Api.csproj" />
     <Project Path="src/MockSources.Service/MockSources.Service.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Aggregation.Api.Tests/Aggregation.Api.Tests.csproj" />
+  </Folder>
 </Solution>
