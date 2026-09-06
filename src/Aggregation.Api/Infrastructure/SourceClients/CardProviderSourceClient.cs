@@ -3,7 +3,7 @@ using Aggregation.Api.Domain.Entities;
 
 namespace Aggregation.Api.Infrastructure.SourceClients;
 
-public class CardProviderSourceClient
+public class CardProviderSourceClient : ISourceClient
 {
     private readonly HttpClient _httpClient;
     private readonly string _baseUrl;
