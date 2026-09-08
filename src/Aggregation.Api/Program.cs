@@ -8,7 +8,12 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.Converters.Add(
+                new System.Text.Json.Serialization.JsonStringEnumConverter());
+        });
 builder.Services.AddOpenApi();
 
 // Persistence
@@ -26,6 +31,9 @@ builder.Services.AddHttpClient<ISourceClient, EftSourceClient>();
 
 //Background service for ingestion
 builder.Services.AddHostedService<IngestionHostedService>();
+
+// Application services
+builder.Services.AddScoped<IAggregationService, AggregationService>();
 
 var app = builder.Build();
 
