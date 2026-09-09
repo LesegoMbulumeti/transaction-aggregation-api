@@ -1,0 +1,26 @@
+services:
+  mock-sources:
+    build:
+      context: .
+      dockerfile: src/MockSources.Service/Dockerfile
+    ports:
+      - "5016:8080"
+    networks:
+      - transaction-net
+
+  aggregation-api:
+    build:
+      context: .
+      dockerfile: src/Aggregation.Api/Dockerfile
+    ports:
+      - "5279:8080"
+    environment:
+      - MockSources__BaseUrl=http://mock-sources:8080
+    depends_on:
+      - mock-sources
+    networks:
+      - transaction-net
+
+networks:
+  transaction-net:
+    driver: bridge
