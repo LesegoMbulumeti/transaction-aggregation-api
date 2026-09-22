@@ -5,6 +5,8 @@ services:
       dockerfile: src/MockSources.Service/Dockerfile
     ports:
       - "5016:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
     networks:
       - transaction-net
 
@@ -15,6 +17,7 @@ services:
     ports:
       - "5279:8080"
     environment:
+      - ASPNETCORE_ENVIRONMENT=Development #testing on scalar
       - MockSources__BaseUrl=http://mock-sources:8080
     depends_on:
       - mock-sources
